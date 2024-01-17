@@ -30,11 +30,13 @@ namespace WpfApp3
 
         private void Bob(object? obj)
         {
+            if (IsRotated == null)
+                IsRotated = true;
             IsRotated = !IsRotated;
         }
 
-        private bool _isRotated = false;
-        public bool IsRotated
+        private bool? _isRotated = null;
+        public bool? IsRotated
         {
             get => _isRotated;
             set
