@@ -43,7 +43,7 @@ namespace WpfApp3
                 {
                     _isRotated = value;
                 }
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(IsRotated));
             }
         }
 

@@ -7,29 +7,57 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              d:DesignHeight="450" 
              d:DesignWidth="800"
              x:Name="MyCoolButtonUC">
-    <Grid>
-        <Button Content="CONTENT" Command="{Binding ElementName=MyCoolButtonUC, Path=TNCommand, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
-            <Button.Style>
-                
 
-            <Style TargetType="Button">
-                <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
-                <Setter Property="RenderTransform">
-                    <Setter.Value>
-                        <RotateTransform Angle="0"/>
-                    </Setter.Value>
-                </Setter>
-                <Style.Triggers>
-                    <DataTrigger Binding="{Binding IsRotated}" Value="True">
-                        <Setter Property="RenderTransform">
-                            <Setter.Value>
-                                <RotateTransform Angle="180"/>
-                            </Setter.Value>
-                        </Setter>
-                    </DataTrigger>
-                </Style.Triggers>
-            </Style>
+    <UserControl.Resources>
+        <Storyboard x:Key="RotateTo180">
+            <DoubleAnimation 
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
+                To="180" From="0" Duration="0:0:.5"/>
+        </Storyboard>
+        <Storyboard x:Key="RotateTo0">
+            <DoubleAnimation 
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
+                To="0" From="180" Duration="0:0:.5"/>
+        </Storyboard>
+
+
+    </UserControl.Resources>
+
+    <Grid>
+        <Button Content="CONTENT" Command="{Binding ButtonClick}">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsRotated}" Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource RotateTo180}" />
+                            </DataTrigger.EnterActions>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsRotated}" Value="False">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource RotateTo0}" />
+                            </DataTrigger.EnterActions>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsRotated}" Value="True">
+                            <Setter Property="RenderTransform">
+                                <Setter.Value>
+                                    <RotateTransform Angle="180"/>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsRotated}" Value="False">
+                            <Setter Property="RenderTransform">
+                                <Setter.Value>
+                                    <RotateTransform Angle="0"/>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
             </Button.Style>
+            <Button.RenderTransformOrigin>
+                <Point X="0.5" Y="0.5"/>
+            </Button.RenderTransformOrigin>
         </Button>
     </Grid>
 </UserControl>
