@@ -8,30 +8,28 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              d:DesignWidth="800"
              x:Name="MyCoolButtonUC">
     <Grid>
-        <Button Command="{Binding ElementName=MyCoolButtonUC, Path=TNCommand, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
-            <Button.Content>
-                <TextBlock Text="CONTENT">
-                    <TextBlock.Style>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
-                            <Setter Property="RenderTransform">
-                                <Setter.Value>
-                                    <RotateTransform Angle="0"/>
-                                </Setter.Value>
-                            </Setter>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding IsRotated}" Value="True">
-                                    <Setter Property="RenderTransform">
-                                        <Setter.Value>
-                                            <RotateTransform Angle="180"/>
-                                        </Setter.Value>
-                                    </Setter>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                </TextBlock>
-            </Button.Content>
+        <Button Content="CONTENT" Command="{Binding ElementName=MyCoolButtonUC, Path=TNCommand, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+            <Button.Style>
+                
+
+            <Style TargetType="Button">
+                <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+                <Setter Property="RenderTransform">
+                    <Setter.Value>
+                        <RotateTransform Angle="0"/>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsRotated}" Value="True">
+                        <Setter Property="RenderTransform">
+                            <Setter.Value>
+                                <RotateTransform Angle="180"/>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            </Button.Style>
         </Button>
     </Grid>
 </UserControl>
