@@ -2,14 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WpfApp3
 {
@@ -19,37 +12,32 @@ namespace WpfApp3
     public partial class MainWindow : Window ,INotifyPropertyChanged
     {
 
-       public ICommand ButtonClick { get; set; }    
+        public ICommand TestClick { get; set; }
         public MainWindow()
         {
             InitializeComponent();
             DataContext = this;
 
-            ButtonClick = new CommandsBase(Bob);
+            TestClick = new CommandsBase(Test);
         }
 
-        private void Bob(object? obj)
+        private void Test(object? obj)
         {
-            if (IsRotated == null)
-                IsRotated = true;
-            IsRotated = !IsRotated;
+            Console.WriteLine("Test");
         }
 
-        private bool? _isRotated = null;
-        public bool? IsRotated
+
+        private bool? _tnIsRotated = null;
+        public bool? TNIsRotated
         {
-            get => _isRotated;
+            get => _tnIsRotated;
             set
             {
-                if(_isRotated != value)
-                {
-                    _isRotated = value;
-                }
-                OnPropertyChanged(nameof(IsRotated));
+               _tnIsRotated = value;
+               OnPropertyChanged(nameof(TNIsRotated));
             }
         }
-
-
+        
         public event PropertyChangedEventHandler? PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {

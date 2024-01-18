@@ -7,11 +7,14 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <local:RotateButton 
-            Width="100" 
+
+        <local:RotateButtonUC 
+            Width="50" 
             Height="50"
-            TNCommand="{Binding ButtonClick}"
-            TNIsActive="{Binding IsRotated}"
-            />
+            VerticalAlignment="Top"
+            HorizontalAlignment="Left"
+            Margin="20 20 0 0"
+            TNCommand="{Binding TestClick,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+            TNIsRotated="{Binding TNIsRotated,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
     </Grid>
 </Window>
